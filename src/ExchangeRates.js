@@ -28,6 +28,13 @@ class ExchangeRates extends Component {
           //Function onChange option
           function handleChange(value) {
             console.log(`Selected: ${value}`)
+            fetch('https://eu1.prisma.sh/sergio-melendez-f22980/database/dev', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body:`{"operationName":"usuarios","variables":{},"query":"query usuarios {\n  users {\n    id\n    age\n    email\n    name\n  }\n}\n"}` ,
+            })
+              .then(res => res.json())
+              .then(res => console.log(res.data));
           }
 
           return (
